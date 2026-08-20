@@ -1,0 +1,21 @@
+   
+            case 4:
+            {
+                string hexadecimal;
+
+                cout << "\nEnter a hexadecimal number: ";
+                cin >> hexadecimal;
+
+                if (isValidHexadecimal(hexadecimal))
+                {
+                    cout << "Decimal equivalent: "
+                         << hexadecimalToDecimal(hexadecimal) << endl;
+                }
+                else
+                {
+                    cout << "Invalid hexadecimal number!\n";
+                    cout << "Use digits 0-9 and letters A-F.\n";
+                }
+
+                break;
+            }
