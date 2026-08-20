@@ -1,0 +1,20 @@
+  case 2:
+            {
+                string binary;
+
+                cout << "\nEnter a binary number: ";
+                cin >> binary;
+
+                if (isValidBinary(binary))
+                {
+                    cout << "Decimal equivalent: "
+                         << binaryToDecimal(binary) << endl;
+                }
+                else
+                {
+                    cout << "Invalid binary number!\n";
+                    cout << "Only 0 and 1 are allowed.\n";
+                }
+
+                break;
+            }
