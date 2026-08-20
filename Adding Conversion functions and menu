@@ -1,0 +1,237 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <cctype>
+
+using namespace std;
+
+// Function 1: Decimal to Binary
+string decimalToBinary(int decimal)
+{
+    if (decimal == 0)
+        return "0";
+
+    string binary = "";
+
+    while (decimal > 0)
+    {
+        binary = char('0' + (decimal % 2)) + binary;
+        decimal = decimal / 2;
+    }
+
+    return binary;
+}
+
+// Function 2: Binary to Decimal
+int binaryToDecimal(string binary)
+{
+    int decimal = 0;
+
+    for (char digit : binary)
+    {
+        decimal = decimal * 2 + (digit - '0');
+    }
+
+    return decimal;
+}
+
+// Function 3: Decimal to Hexadecimal
+string decimalToHexadecimal(int decimal)
+{
+    if (decimal == 0)
+        return "0";
+
+    string hexadecimal = "";
+    char hexDigits[] = "0123456789ABCDEF";
+
+    while (decimal > 0)
+    {
+        int remainder = decimal % 16;
+        hexadecimal = hexDigits[remainder] + hexadecimal;
+        decimal = decimal / 16;
+    }
+
+    return hexadecimal;
+}
+
+// Function 4: Hexadecimal to Decimal
+int hexadecimalToDecimal(string hexadecimal)
+{
+    int decimal = 0;
+
+    for (char digit : hexadecimal)
+    {
+        decimal = decimal * 16;
+
+        if (digit >= '0' && digit <= '9')
+        {
+            decimal += digit - '0';
+        }
+        else if (digit >= 'A' && digit <= 'F')
+        {
+            decimal += digit - 'A' + 10;
+        }
+        else if (digit >= 'a' && digit <= 'f')
+        {
+            decimal += digit - 'a' + 10;
+        }
+    }
+
+    return decimal;
+}
+
+// Check if a string contains only binary digits
+bool isValidBinary(string binary)
+{
+    if (binary.empty())
+        return false;
+
+    for (char digit : binary)
+    {
+        if (digit != '0' && digit != '1')
+            return false;
+    }
+
+    return true;
+}
+
+// Check if a string is a valid hexadecimal number
+bool isValidHexadecimal(string hexadecimal)
+{
+    if (hexadecimal.empty())
+        return false;
+
+    for (char digit : hexadecimal)
+    {
+        if (!((digit >= '0' && digit <= '9') ||
+              (digit >= 'A' && digit <= 'F') ||
+              (digit >= 'a' && digit <= 'f')))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int main()
+{
+    int choice;
+
+    do
+    {
+        cout << "\n=====================================\n";
+        cout << "       NUMBER CONVERTER PROGRAM\n";
+        cout << "=====================================\n";
+        cout << "1. Convert Decimal to Binary\n";
+        cout << "2. Convert Binary to Decimal\n";
+        cout << "3. Convert Decimal to Hexadecimal\n";
+        cout << "4. Convert Hexadecimal to Decimal\n";
+        cout << "5. Exit\n";
+        cout << "=====================================\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+            // Decimal to Binary
+            case 1:
+            {
+                int decimal;
+
+                cout << "\nEnter a decimal number: ";
+                cin >> decimal;
+
+                if (decimal < 0)
+                {
+                    cout << "Please enter a positive number.\n";
+                }
+                else
+                {
+                    cout << "Binary equivalent: "
+                         << decimalToBinary(decimal) << endl;
+                }
+
+                break;
+            }
+
+            // Binary to Decimal
+            case 2:
+            {
+                string binary;
+
+                cout << "\nEnter a binary number: ";
+                cin >> binary;
+
+                if (isValidBinary(binary))
+                {
+                    cout << "Decimal equivalent: "
+                         << binaryToDecimal(binary) << endl;
+                }
+                else
+                {
+                    cout << "Invalid binary number!\n";
+                    cout << "Only 0 and 1 are allowed.\n";
+                }
+
+                break;
+            }
+
+            // Decimal to Hexadecimal
+            case 3:
+            {
+                int decimal;
+
+                cout << "\nEnter a decimal number: ";
+                cin >> decimal;
+
+                if (decimal < 0)
+                {
+                    cout << "Please enter a positive number.\n";
+                }
+                else
+                {
+                    cout << "Hexadecimal equivalent: "
+                         << decimalToHexadecimal(decimal) << endl;
+                }
+
+                break;
+            }
+
+            // Hexadecimal to Decimal
+            case 4:
+            {
+                string hexadecimal;
+
+                cout << "\nEnter a hexadecimal number: ";
+                cin >> hexadecimal;
+
+                if (isValidHexadecimal(hexadecimal))
+                {
+                    cout << "Decimal equivalent: "
+                         << hexadecimalToDecimal(hexadecimal) << endl;
+                }
+                else
+                {
+                    cout << "Invalid hexadecimal number!\n";
+                    cout << "Use digits 0-9 and letters A-F.\n";
+                }
+
+                break;
+            }
+
+            // Exit
+            case 5:
+                cout << "\nThank you for using the Number Converter!\n";
+                cout << "Program terminated.\n";
+                break;
+
+            default:
+                cout << "\nInvalid choice!\n";
+                cout << "Please select an option from 1 to 5.\n";
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
