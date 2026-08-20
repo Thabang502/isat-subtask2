@@ -1,0 +1,21 @@
+
+             
+            case 3:
+            {
+                int decimal;
+
+                cout << "\nEnter a decimal number: ";
+                cin >> decimal;
+
+                if (decimal < 0)
+                {
+                    cout << "Please enter a positive number.\n";
+                }
+                else
+                {
+                    cout << "Hexadecimal equivalent: "
+                         << decimalToHexadecimal(decimal) << endl;
+                }
+
+                break;
+            }
