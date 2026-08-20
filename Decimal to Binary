@@ -1,0 +1,15 @@
+string decimalToBinary(int decimal)
+{
+    if (decimal == 0)
+        return "0";
+
+    string binary = "";
+
+    while (decimal > 0)
+    {
+        binary = char('0' + (decimal % 2)) + binary;
+        decimal = decimal / 2;
+    }
+
+    return binary;
+}
